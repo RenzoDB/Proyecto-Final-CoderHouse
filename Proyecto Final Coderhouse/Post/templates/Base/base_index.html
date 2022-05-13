@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+{% include 'Base/head.html' %}
+    <body>
+        {% include 'Base/nav.html' %}
+        <header class="masthead bg" >
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>{% block title %} Blog {% endblock %}</h1>
+                            <span class="subheading">{% block subtitle %}Proyecto Final Blog {% endblock %}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+    {% block content %}
+        
+
+    {% endblock %}
+        {% include 'Base/footer.html' %}
+    {% block script %}
+        {% include 'Base/scripts.html' %}
+    {% endblock %}
+
+    </body>
+</html>
+

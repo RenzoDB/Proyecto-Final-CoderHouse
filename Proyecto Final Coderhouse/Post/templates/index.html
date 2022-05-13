@@ -1,0 +1,63 @@
+{% extends 'Base/base_index.html' %}
+{% block title %} Lista de Articulos {% endblock %}
+{% block subtitle %} Poyecto Final {% endblock %}
+{% block content %}
+
+    <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            {% for post in post_list %}
+            <div class="post-preview">
+                <a href="{% url 'detalle' post.slug %}">
+                    <h2 class="post-title">{{ post.titulo }}</h2>
+                    <h3 class="post-subtitle">{{ post.descripcion  | slice:"0:100"  }}</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">{{post.autor}}</a>
+                    on {{ post.fecha_publicacion }}
+                </p>
+            </div>
+            {% endfor %}
+            <!-- Divider-->
+            <hr class="my-4" />
+            <!-- Post preview-->
+
+            <!-- Divider-->
+            <hr class="my-4" />
+            <!-- Paginacion-->
+            <div class="d-flex justify-content-end mb-4">
+
+                {% for contact in page_obj %}
+    
+                    {{ contact.full_name|upper }}<br>
+    
+                {% endfor %}
+
+                <nav aria-label="Page navigation example">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; primera</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previa</a>
+        {% endif %}
+
+        <span class="current">
+            Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">ultima &raquo;</a>
+        {% endif %}
+    </span>
+                </nav>
+            </div>
+            <!-- Paginacion-->
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
